@@ -66,6 +66,7 @@ def get_openai_response(current_window, last_windows):
 def speak_text(text, emotion):
     """Use playht & pyaudio to play the text with a given emotion."""
     print(f"Speaking: {text}")
+    text = "   " + text
     options = TTSOptions(
         voice="s3://voice-cloning-zero-shot/cebaa3cf-d1d5-4625-ba20-03dcca3b379f/sargesaad/manifest.json",
         voice_guidance=6,
@@ -81,10 +82,8 @@ def speak_text(text, emotion):
 
 def main():
     last_focused_window = None
-    i = 0
     time.sleep(1)
-    while i < 100:
-        i = i+1
+    while True:
         current_window = get_current_window()
         print(f"Current window: {current_window}")
         if current_window != last_focused_window:
